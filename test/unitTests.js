@@ -2,6 +2,7 @@ import { expect } from "chai";
 import add from "../src/add.js";
 import divide from "../src/divide.js";
 import words from "../src/words.js"
+import toString from "../src/toString.js"
 
 describe('Pre planned tests', function () {
   
@@ -35,6 +36,7 @@ describe('Pre planned tests', function () {
     });
   });
 });
+
 
 describe('Copiliot generated tests', function () {
   
@@ -116,7 +118,30 @@ describe('Copiliot generated tests', function () {
 });
 
 
-describe('Others', function () {
+describe("Tests planned in phase 2", function () {
+  describe("Tests for toString()", function () {
+    it("Basic functionality", function () {
+      expect(toString(6)).to.equal("6");
+    });
+    it("Appending strings", function () {
+      expect("Earth-" + toString(616)).to.equal("Earth-616")
+    });
+    it("Stringifying lists", function () {
+      expect(toString([1,2,3])).to.equal("1,2,3")
+    });
+    it("Stringifying a string", function () {
+      expect(toString("world")).to.equal("world");
+    });
+    it("Stringifying null values", function () {
+      expect(toString(null)).to.equal("");
+    });
+    it("Stringifying undefined values", function () {
+      expect(toString(undefined)).to.equal("");
+    });
+    it("Stringifying a list with null value included", function () {
+      expect(toString([null,1,2])).to.equal(",1,2");
+    });
+  });
   
   describe('Tests for words()', function () {
     it("Basic functionality", function () {
@@ -146,9 +171,9 @@ describe('Others', function () {
     });
 
     it("Invalid string", function () {
-      expect(() => words(null)).to.throw()
-      expect(() => words(undefined)).to.throw()
-      expect(() => words(2025)).to.throw()
+      expect(() => words(null)).to.throw();
+      expect(() => words(undefined)).to.throw();
+      expect(() => words(2025)).to.throw();
     });
   });
 });
