@@ -1,6 +1,7 @@
 import { expect } from "chai";
 import add from "../src/add.js";
 import divide from "../src/divide.js";
+import words from "../src/words.js"
 
 describe('Pre planned tests', function () {
   
@@ -110,6 +111,44 @@ describe('Copiliot generated tests', function () {
     it("Handles non-numeric values gracefully", function () {
       expect(divide('6', 3)).to.equal(2);
       expect(divide(null, 3)).to.equal(0); // null coerces to 0
+    });
+  });
+});
+
+
+describe('Others', function () {
+  
+  describe('Tests for words()', function () {
+    it("Basic functionality", function () {
+      expect(words('fred, barney, & pebbles')).to.deep.equal(['fred', 'barney', 'pebbles']);
+    });
+
+     it("Tests with regex", function () {
+      expect(words('fred, barney, & pebbles', /[^, ]+/g)).to.deep.equal(['fred', 'barney', '&', 'pebbles']);
+      expect(words('fred, barney, & pebbles', /.*/)).to.deep.equal(['fred, barney, & pebbles']);
+    });
+
+    it("Mix of numbers and letters", function () {
+      expect(words('C0FF33')).to.deep.equal(['C0FF33']);
+    });
+
+    it("Unicode characters", function () {
+      expect(words('Javascript is 💩💩💩')).to.deep.equal(['Javascript', 'is', '💩💩💩']);
+      expect(words('ディーズナッツ')).to.deep.equal(['ディーズナッツ']);
+    });
+
+    it("Unicode characters with regex", function () {
+      expect(words('Using 👍 as a delimiter', /[^👍]+/g)).to.deep.equal(['Using ', ' as a delimiter']);
+    });
+    
+    it("Empty string", function () {
+      expect(words('')).to.deep.equal([]);
+    });
+
+    it("Invalid string", function () {
+      expect(() => words(null)).to.throw()
+      expect(() => words(undefined)).to.throw()
+      expect(() => words(2025)).to.throw()
     });
   });
 });
