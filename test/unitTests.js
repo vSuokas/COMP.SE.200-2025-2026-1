@@ -1,11 +1,47 @@
 import { expect } from "chai";
 import add from "../src/add.js";
 
-describe('Unit tests', function () {
-
+describe('Pre planned tests', function () {
   describe('Tests for add()', function () {
     it('Basic functionality', function () {
       expect(add(1,2)).to.equal(3);
+    });
+  });
+});
+
+describe('Copiliot generated tests', function () {
+  
+  describe('Tests for add()', function () {
+    it('Adds two positive numbers', function () {
+      expect(add(6, 4)).to.equal(10);
+    });
+
+    it('Adds a positive and a negative number', function () {
+      expect(add(6, -4)).to.equal(2);
+    });
+
+    it('Adds two negative numbers', function () {
+      expect(add(-6, -4)).to.equal(-10);
+    });
+
+    it('Adds zero and a number', function () {
+      expect(add(0, 5)).to.equal(5);
+      expect(add(5, 0)).to.equal(5);
+    });
+
+    it('Adds floating point numbers', function () {
+      expect(add(0.1, 0.2)).to.be.closeTo(0.3, 1.0e-9)
+    });
+
+    it('Handles undefined values by using default (0)', function () {
+      expect(add(undefined, 5)).to.equal(5)
+      expect(add(5, undefined)).to.equal(5)
+      expect(add(undefined, undefined)).to.equal(0)
+    });
+    
+    it('Handles non-numeric values gracefully', function () {
+      expect(add('6', 4)).to.equal(10)
+      expect(add(null, 4)).to.equal(4)
     });
   });
 });
