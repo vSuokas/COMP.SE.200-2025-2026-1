@@ -66,8 +66,50 @@ describe('Copiliot generated tests', function () {
     });
     
     it('Handles non-numeric values gracefully', function () {
-      expect(add('6', 4)).to.equal(10)
+      expect(add('6', 4)).to.equal(10) // coerces string to number
       expect(add(null, 4)).to.equal(4)
+    });
+  });
+
+  describe("Tests for divide()", function () {
+    it("Divides two positive numbers", function () {
+      expect(divide(6, 4)).to.equal(2);
+    });
+
+    it("Divides a positive by a negative number", function () {
+      expect(divide(6, -3)).to.equal(-2);
+    });
+
+    it("Divides two negative numbers", function () {
+      expect(divide(-6, -3)).to.equal(2);
+    });
+
+    it("Divides by 1", function () {
+      expect(divide(6, 1)).to.equal(6);
+    });
+
+    it("Divides zero by a number", function () {
+      expect(divide(0, 5)).to.equal(0);
+    });
+
+    it("Handles floating point division", function () {
+      expect(divide(7, 2)).to.be.closeTo(3.5, 1.0e-9);
+    });
+
+    it("Handles undefined values using default (1)", function () {
+      expect(divide(undefined, 5)).to.equal(5); // dividend defaults to 1
+      expect(divide(5, undefined)).to.equal(5); // divisor defaults to 1
+      expect(divide(undefined, undefined)).to.equal(1);
+    });
+
+    it("Handles division by zero", function () {
+      expect(divide(5, 0)).to.equal(Infinity);
+      expect(divide(-5, 0)).to.equal(-Infinity);
+    });
+
+    it("Handles non-numeric values gracefully", function () {
+      expect(divide('6', 3)).to.equal(2);
+      expect(divide(null, 3)).to.equal(0); // null coerces to 0
     });
   });
 });
