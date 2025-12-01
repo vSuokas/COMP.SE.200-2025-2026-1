@@ -231,6 +231,7 @@ describe("Tests planned in phase 2", function () {
     });
     it("Invalid hex returns NaN", function() {
       expect(toNumber("0xBadHex")).to.be.NaN;
+      expect(toNumber("-0x1A4")).to.be.NaN;
     });
     it("Infinity should not be affected", function() {
       expect(toNumber(Infinity)).to.equal(Infinity)
