@@ -240,6 +240,10 @@ describe("Tests planned in phase 2", function () {
     it("Array of boolean is not a number", function() {
       expect(toNumber([true])).to.be.NaN;
     });
+    it("Objects are not numbers", function() {
+      console.log(toNumber({"key": "value"}));
+      expect(toNumber({"key": "value"})).to.be.NaN;
+    });
   });
 
   describe('Tests for every()', function () {
