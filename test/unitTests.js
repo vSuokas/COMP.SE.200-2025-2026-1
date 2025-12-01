@@ -3,6 +3,7 @@ import add from "../src/add.js";
 import divide from "../src/divide.js";
 import words from "../src/words.js"
 import toString from "../src/toString.js"
+import upperFirst from "../src/upperFirst.js"
 
 describe('Pre planned tests', function () {
   
@@ -119,6 +120,7 @@ describe('Copiliot generated tests', function () {
 
 
 describe("Tests planned in phase 2", function () {
+
   describe("Tests for toString()", function () {
     it("Basic functionality", function () {
       expect(toString(6)).to.equal("6");
@@ -140,6 +142,21 @@ describe("Tests planned in phase 2", function () {
     });
     it("Stringifying a list with null value included", function () {
       expect(toString([null,1,2])).to.equal(",1,2");
+    });
+  });
+
+  describe("Tests for upperFirst()", function () {
+    it("Basic functionality", function () {
+      expect(upperFirst("it's high noon")).to.equal("It's high noon");
+    });
+    it("Not affecting capital letters", function () {
+      expect(upperFirst("It's high noon")).to.equal("It's high noon");
+    });
+    it("Unicode characters not affected", function () {
+      expect(upperFirst(" ̷")).to.equal(" ̷");
+    });
+    it("Numbers should not be affected", function () {
+      expect(upperFirst("6")).to.equal("6");
     });
   });
   
