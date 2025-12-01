@@ -228,6 +228,7 @@ describe("Tests planned in phase 2", function () {
     });
     it("Symbols are not numbers", function() {
       expect(toNumber("&")).to.be.NaN
+      expect(toNumber(Symbol("4"))).to.be.NaN;
     });
     it("Functions are not numbers", function() {
       expect(toNumber((x) => x+1)).to.be.NaN;
@@ -235,6 +236,9 @@ describe("Tests planned in phase 2", function () {
     it("Converts boolean ", function() {
       expect(toNumber(true)).to.equal(1);
       expect(toNumber(false)).to.equal(0);
+    });
+    it("Array of boolean is not a number", function() {
+      expect(toNumber([true])).to.be.NaN;
     });
   });
 
