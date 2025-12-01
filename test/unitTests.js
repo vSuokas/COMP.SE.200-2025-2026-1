@@ -252,7 +252,7 @@ describe("Tests planned in phase 2", function () {
     it("Test with overwritten valueOf", function() {
       const obj1 = { valueOf: 69 };
       const obj2 = { valueOf() {return -0} };
-      const obj3 = { valueOf() {return 69} };
+      const obj3 = { valueOf() {return "69"} };
       expect(toNumber(obj1)).to.be.NaN;
       expect(toNumber(obj2)).to.equal(-0)
       expect(toNumber(obj3)).to.equal(69)
