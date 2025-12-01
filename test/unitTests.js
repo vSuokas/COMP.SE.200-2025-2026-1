@@ -170,6 +170,10 @@ describe("Tests planned in phase 2", function () {
       expect(words('')).to.deep.equal([]);
     });
 
+    it("No matches with regex", function () {
+      expect(words('No matches here', /Z/)).to.deep.equal([]);
+    });
+
     it("Invalid string", function () {
       expect(() => words(null)).to.throw();
       expect(() => words(undefined)).to.throw();
