@@ -215,13 +215,16 @@ describe("Tests planned in phase 2", function () {
       expect(toNumber(6)).to.equal(6)
     });
     it("Converts binary numbers", function() {
-      expect(toNumber(0b0110)).to.equal(6)
+      expect(toNumber("0b0110")).to.equal(6)
     });
     it("Converts octal numbers", function() {
-      expect(toNumber(0o322)).to.equal(210)
+      expect(toNumber("0o322")).to.equal(210)
     });
     it("Converts hexadecimal numbers", function() {
-      expect(toNumber(0x1A4)).to.equal(420)
+      expect(toNumber("0x1A4")).to.equal(420)
+    });
+    it("Invalid hex returns NaN", function() {
+      expect(toNumber("0xBadHex")).to.be.NaN;
     });
     it("Infinity should not be affected", function() {
       expect(toNumber(Infinity)).to.equal(Infinity)
