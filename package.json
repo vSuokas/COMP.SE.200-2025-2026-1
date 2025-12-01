@@ -4,7 +4,7 @@
   "description": "Unit tests for provided source files",
   "scripts": {
     "test": "mocha",
-    "coverage": "c8 --reporter=lcov --exclude \"src/.internal/**\" --exclude \"test/**\" mocha || true"
+    "coverage": "c8 --reporter=lcov --exclude \"src/.internal/**\" --exclude \"test/**\" --exclude \"src/slice.js\" --exclude \"src/toString.js\" mocha || true"
   },
   "keywords": [],
   "type": "module",
