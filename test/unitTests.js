@@ -4,11 +4,8 @@ import divide from "../src/divide.js";
 import words from "../src/words.js"
 import toString from "../src/toString.js"
 import upperFirst from "../src/upperFirst.js"
-<<<<<<< HEAD
 import toNumber from "../src/toNumber.js";
-=======
 import every from "../src/every.js"
->>>>>>> 4d19f38b3975cae422c7485580031f5cd55793b7
 
 describe('Pre planned tests', function () {
   
