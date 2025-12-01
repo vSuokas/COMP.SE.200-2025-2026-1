@@ -4,7 +4,11 @@ import divide from "../src/divide.js";
 import words from "../src/words.js"
 import toString from "../src/toString.js"
 import upperFirst from "../src/upperFirst.js"
+<<<<<<< HEAD
 import toNumber from "../src/toNumber.js";
+=======
+import every from "../src/every.js"
+>>>>>>> 4d19f38b3975cae422c7485580031f5cd55793b7
 
 describe('Pre planned tests', function () {
   
@@ -188,6 +192,10 @@ describe("Tests planned in phase 2", function () {
       expect(words('')).to.deep.equal([]);
     });
 
+    it("No matches with regex", function () {
+      expect(words('No matches here', /Z/)).to.deep.equal([]);
+    });
+
     it("Invalid string", function () {
       expect(() => words(null)).to.throw();
       expect(() => words(undefined)).to.throw();
@@ -225,6 +233,22 @@ describe("Tests planned in phase 2", function () {
     });
     it("Functions are not numbers", function() {
       expect(toNumber((x) => x+1)).to.be.NaN;
+  });
+      
+  describe('Tests for every()', function () {
+    it("Basic functionality", function () {
+      expect(every([true, 1, null, 'yes'], Boolean)).to.equal(false);
+      expect(every([true, 1, 'yes', null], Boolean)).to.equal(false);
+      expect(every([true, 1, 'yes'], Boolean)).to.equal(true);
+    });
+    
+    it("Empty array", function () {
+      expect(every([], () => false)).to.equal(true);
+    });
+
+    it("Invalid parameters", function () {
+      expect(() => every("This is not an array", "This is not a function")).to.throw();
+    });
     });
   });
 });
