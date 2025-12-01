@@ -214,6 +214,7 @@ describe("Tests planned in phase 2", function () {
     it("Numbers should not be affected", function() {
       expect(toNumber(6)).to.equal(6);
       expect(toNumber(0)).to.equal(0);
+      expect(toNumber(-0)).to.equal(-0);
     });
 
     it("Converts binary numbers", function() {
@@ -249,8 +250,12 @@ describe("Tests planned in phase 2", function () {
       expect(toNumber({"key": "value"})).to.be.NaN;
     });
     it("Test with overwritten valueOf", function() {
-      const obj = { valueOf: 69 };
-      expect(toNumber(obj)).to.be.NaN;
+      const obj1 = { valueOf: 69 };
+      const obj2 = { valueOf() {return -0} };
+      const obj3 = { valueOf() {return 69} };
+      expect(toNumber(obj1)).to.be.NaN;
+      expect(toNumber(obj2)).to.equal(-0)
+      expect(toNumber(obj3)).to.equal(69)
     });
     it("Test with null and undefined", function() {
       expect(toNumber(null)).to.equal(0);
