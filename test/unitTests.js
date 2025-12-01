@@ -4,6 +4,7 @@ import divide from "../src/divide.js";
 import words from "../src/words.js"
 import toString from "../src/toString.js"
 import upperFirst from "../src/upperFirst.js"
+import every from "../src/every.js"
 
 describe('Pre planned tests', function () {
   
@@ -195,6 +196,22 @@ describe("Tests planned in phase 2", function () {
       expect(() => words(null)).to.throw();
       expect(() => words(undefined)).to.throw();
       expect(() => words(2025)).to.throw();
+    });
+  });
+
+  describe('Tests for every()', function () {
+    it("Basic functionality", function () {
+      expect(every([true, 1, null, 'yes'], Boolean)).to.equal(false);
+      expect(every([true, 1, 'yes', null], Boolean)).to.equal(false);
+      expect(every([true, 1, 'yes'], Boolean)).to.equal(true);
+    });
+    
+    it("Empty array", function () {
+      expect(every([], () => false)).to.equal(true);
+    });
+
+    it("Invalid parameters", function () {
+      expect(() => every("This is not an array", "This is not a function")).to.throw();
     });
   });
 });
