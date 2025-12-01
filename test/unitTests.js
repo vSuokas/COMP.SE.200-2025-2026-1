@@ -223,6 +223,9 @@ describe("Tests planned in phase 2", function () {
     it("Converts octal numbers", function() {
       expect(toNumber("0o322")).to.equal(210)
     });
+    it("Invalid octal returns NaN", function() {
+      expect(toNumber("0oBadOctal")).to.be.NaN;
+    });
     it("Converts hexadecimal numbers", function() {
       expect(toNumber("0x1A4")).to.equal(420)
     });
