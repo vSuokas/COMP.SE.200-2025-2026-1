@@ -5,6 +5,7 @@ import words from "../src/words.js"
 import toString from "../src/toString.js"
 import upperFirst from "../src/upperFirst.js"
 import every from "../src/every.js"
+import filter from "../src/filter.js"
 
 describe('Pre planned tests', function () {
   
@@ -210,8 +211,38 @@ describe("Tests planned in phase 2", function () {
       expect(every([], () => false)).to.equal(true);
     });
 
+    it("Null or undefined array", function () {
+      expect(every(null, () => false)).to.equal(true);
+      expect(every(undefined, () => false)).to.equal(true);
+    });
+
     it("Invalid parameters", function () {
       expect(() => every("This is not an array", "This is not a function")).to.throw();
+    });
+  });
+
+  describe('Tests for filter()', function () {
+    it("Basic functionality", function () {
+      const users = [{'user': 'barney', 'active': true },
+                     {'user': 'fred', 'active': false }];
+      expect(filter(users, ({active}) => active)).to.deep.equal([users[0]]);
+    });
+
+    it("Empty array", function () {
+      expect(filter([], ({active}) => active)).to.deep.equal([]);
+    });
+
+    it("Array with one element", function () {
+      expect(filter([42], p => p === 42)).to.deep.equal([42]);
+    });
+
+    it("Empty result", function () {
+      expect(filter([1, 2, 3, 4, 5], p => p === 42)).to.deep.equal([]);
+    });
+
+    it("Invalid parameters", function () {
+      expect(filter(undefined, null)).to.equal([])
+      expect(() => filter("This is not an array", null)).to.throw()
     });
   });
 });
