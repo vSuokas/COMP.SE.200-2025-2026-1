@@ -230,8 +230,13 @@ describe("Tests planned in phase 2", function () {
     });
     it("Functions are not numbers", function() {
       expect(toNumber((x) => x+1)).to.be.NaN;
+    });
+    it("Converts boolean ", function() {
+      expect(toNumber(true)).to.equal(1);
+      expect(toNumber(false)).to.equal(0);
+    });
   });
-      
+
   describe('Tests for every()', function () {
     it("Basic functionality", function () {
       expect(every([true, 1, null, 'yes'], Boolean)).to.equal(false);
@@ -245,7 +250,6 @@ describe("Tests planned in phase 2", function () {
 
     it("Invalid parameters", function () {
       expect(() => every("This is not an array", "This is not a function")).to.throw();
-    });
     });
   });
 });
