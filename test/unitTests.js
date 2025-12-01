@@ -4,6 +4,7 @@ import divide from "../src/divide.js";
 import words from "../src/words.js"
 import toString from "../src/toString.js"
 import upperFirst from "../src/upperFirst.js"
+import toNumber from "../src/toNumber.js";
 import every from "../src/every.js"
 import filter from "../src/filter.js"
 
@@ -197,6 +198,43 @@ describe("Tests planned in phase 2", function () {
       expect(() => words(null)).to.throw();
       expect(() => words(undefined)).to.throw();
       expect(() => words(2025)).to.throw();
+    });
+  });
+
+  describe("Tests for toNumber()", function () {
+    it("Basic functionality", function() {
+      expect(toNumber("6")).to.equal(6)
+    });
+    it("Works with extra whitespaces", function() {
+      expect(toNumber("  6     ")).to.equal(6)
+    });
+    it("Works with decimal numbers", function() {
+      expect(toNumber("3.14")).to.equal(3.14)
+    });
+    it("Numbers should not be affected", function() {
+      expect(toNumber(6)).to.equal(6)
+    });
+    it("Converts binary numbers", function() {
+      expect(toNumber(0b0110)).to.equal(6)
+    });
+    it("Converts octal numbers", function() {
+      expect(toNumber(0o322)).to.equal(210)
+    });
+    it("Converts hexadecimal numbers", function() {
+      expect(toNumber(0x1A4)).to.equal(420)
+    });
+    it("Infinity should not be affected", function() {
+      expect(toNumber(Infinity)).to.equal(Infinity)
+    });
+    it("Symbols are not numbers", function() {
+      expect(toNumber("&")).to.be.NaN
+    });
+    it("Functions are not numbers", function() {
+      expect(toNumber((x) => x+1)).to.be.NaN;
+    });
+    it("Converts boolean ", function() {
+      expect(toNumber(true)).to.equal(1);
+      expect(toNumber(false)).to.equal(0);
     });
   });
 
