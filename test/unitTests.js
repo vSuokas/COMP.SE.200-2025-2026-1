@@ -146,6 +146,12 @@ describe("Tests planned in phase 2", function () {
     it("Stringifying a list with null value included", function () {
       expect(toString([null,1,2])).to.equal(",1,2");
     });
+    it("Stringifying symbols", function () {
+      expect(toString(Symbol("4"))).to.equal("4");
+    });
+    it("Stringifying -0", function () {
+      expect(toString(-0)).to.equal("-0");
+    });
   });
 
   describe("Tests for upperFirst()", function () {
